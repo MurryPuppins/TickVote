@@ -1,0 +1,14 @@
+# Config file for TickVote
+
+# Prefix for the plugin messages
+prefix: "TickVote> "
+
+# Cost for player when voting is successful (Default is 50)
+# The cost will only subtract if the vote passes and the tick is changed
+cost: 50
+
+# Vote timer length in minutes (Default is 2 minutes)
+# How long a vote will go on for until it expires
+timer: 2
+
+# End of config file
