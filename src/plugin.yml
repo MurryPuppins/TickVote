@@ -10,7 +10,7 @@ commands:
     usage: /tv <argument>
     description: TickVote command
     permission: tv.vote
-  tv-reload:
+  tv reload:
     usage: /tv reload
     description: Reload config
     permission: tv.reload
