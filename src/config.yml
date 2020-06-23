@@ -11,6 +11,8 @@ cost: 0
 # How long a vote will go on for until it expires
 timer: 2
 
-
+# Percentage for when vote is passed through (Default is 50)
+# After x percentage of players vote, pass the tick vote (80% = 80% of players MUST vote)
+percentage: 50
 
 # End of config file

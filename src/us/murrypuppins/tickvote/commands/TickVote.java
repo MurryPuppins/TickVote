@@ -25,6 +25,7 @@ public class TickVote implements CommandExecutor {
     private Economy economy = plugin.getEconomy();
     private World world;
     private String prefix = plugin.getConfig().getString("prefix");
+    private Double percentage = plugin.getConfig().getDouble("percentage");
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -56,9 +57,7 @@ public class TickVote implements CommandExecutor {
                         voteCount++;
                         pList.add(player);
                         player.sendMessage(ChatColor.translateAlternateColorCodes('&',prefix + "Vote casted!"));
-                        //TODO
-                        // Add config variable for chance at when vote is executed
-                        if(voteCount >= (getpOnline()/2)) {
+                        if((voteCount/getpOnline()) >= (percentage * .01)) {
                             double cost = plugin.getConfig().getDouble("cost");
                             for (Player value : pList) {
                                 economy.withdrawPlayer(value, cost);
@@ -139,6 +138,7 @@ public class TickVote implements CommandExecutor {
         plugin.reloadConfig();
         prefix = plugin.getConfig().getString("prefix");
         end = plugin.getConfig().getInt("timer");
+        percentage = plugin.getConfig().getDouble("percentage");
     }
 
     private void setVoteStatus() {
