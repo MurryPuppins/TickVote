@@ -11,7 +11,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../API's/spigot-api-1.15.2-R0.1-20200620.025358-119.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/API's/spigot-api-1.14.4-R0.1-20191130.080751-85.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -20,7 +20,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../API's/Vault.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/API's/Vault.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

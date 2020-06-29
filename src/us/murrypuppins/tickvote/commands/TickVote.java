@@ -57,7 +57,7 @@ public class TickVote implements CommandExecutor {
                         voteCount++;
                         pList.add(player);
                         player.sendMessage(ChatColor.translateAlternateColorCodes('&',prefix + "Vote casted!"));
-                        if((voteCount/getpOnline()) >= (percentage * .01)) {
+                        if(((double)voteCount/getpOnline()) >= (percentage * .01)) {
                             double cost = plugin.getConfig().getDouble("cost");
                             for (Player value : pList) {
                                 economy.withdrawPlayer(value, cost);
@@ -92,6 +92,30 @@ public class TickVote implements CommandExecutor {
                 player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "Reload complete!"));
                 return true;
             }
+            if(!voteStatus) {
+                if(!isInt(args[0])) {
+                    player.sendMessage("blah");
+                    return true;
+                }
+                setVoteStatus();
+                tickVote = Integer.parseInt(args[0]);
+                start = System.currentTimeMillis();
+                world = player.getWorld();
+                pList.add(player);
+                voteCount = 1;
+                if(((double)voteCount/getpOnline()) >= (percentage * .01)) {
+                    double cost = plugin.getConfig().getDouble("cost");
+                    for (Player value : pList) {
+                        economy.withdrawPlayer(value, cost);
+                    }
+                    world.setTime(tickVote);
+                    Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', prefix + "Vote has passed, the time has been adjusted!"));
+                    pList.clear();
+                    setVoteStatus();
+                }
+                return true;
+            }
+            /**
             if(!voteStatus && (getpOnline() > 1)) {
                 if(!isInt(args[0])) {
                     player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "Tick input is unknown, try day, night or a #!"));
@@ -120,17 +144,14 @@ public class TickVote implements CommandExecutor {
                 world.setTime(tickVote);
                 Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', prefix + "The time has been modified!"));
                 return true;
-            }
-            if(voteStatus) {
-                player.sendMessage(ChatColor.translateAlternateColorCodes('&',prefix + "There is an ongoing vote already, please wait until the vote is over!"));
-                return true;
-            }
+            }**/
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',prefix + "There is an ongoing vote already, please wait until the vote is over!"));
+            return true;
         }
         else {
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "Invalid input!"));
             return true;
         }
-        return true;
     }
 
     private void reloadConfig() {
