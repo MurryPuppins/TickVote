@@ -7,6 +7,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import us.murrypuppins.tickvote.commands.TickVote;
 
+/**
+ * Hello! Looks like you decompiled my plugin TickVote!
+ * Nothing too fancy here, it's my first plugin ever anyways <3
+ * Hopefully you enjoy it and if you have any suggestions, please
+ * let me know in DM's on SpigotMC :)
+ */
+
 public class Main extends JavaPlugin implements Listener {
 
     private Economy econ = null;

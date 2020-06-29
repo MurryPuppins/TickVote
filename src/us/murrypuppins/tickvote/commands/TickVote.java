@@ -115,36 +115,6 @@ public class TickVote implements CommandExecutor {
                 }
                 return true;
             }
-            /**
-            if(!voteStatus && (getpOnline() > 1)) {
-                if(!isInt(args[0])) {
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "Tick input is unknown, try day, night or a #!"));
-                    return true;
-                }
-                setVoteStatus();
-                tickVote = Integer.parseInt(args[0]);
-                start = System.currentTimeMillis();
-                world = player.getWorld();
-                Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', prefix + "A tick vote for the tick time of " + args[0]) + " has been started! Vote with '/tv'");
-                voteCount = 1;
-                pList.add(player);
-                return true;
-            }
-            if(!voteStatus && (getpOnline() == 1)) {
-                if(!isInt(args[0])) {
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "Tick input is unknown, try entering a number between 0 and 24000!"));
-                    return true;
-                }
-                tickVote = Integer.parseInt(args[0]);
-                start = System.currentTimeMillis();
-                world = player.getWorld();
-                if(player.isOnline()) {
-                    economy.withdrawPlayer(player, plugin.getConfig().getDouble("cost"));
-                }
-                world.setTime(tickVote);
-                Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', prefix + "The time has been modified!"));
-                return true;
-            }**/
             player.sendMessage(ChatColor.translateAlternateColorCodes('&',prefix + "There is an ongoing vote already, please wait until the vote is over!"));
             return true;
         }
