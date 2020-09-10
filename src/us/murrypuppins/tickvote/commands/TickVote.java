@@ -30,22 +30,27 @@ public class TickVote implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
+        // If console issues reload command
         if(!(sender instanceof Player) && args[0].equalsIgnoreCase("reload")) {
             reloadConfig();
             Bukkit.getLogger().info(ChatColor.translateAlternateColorCodes('&', prefix + "Reload complete!"));
             return true;
         }
 
+        // If console attempts player-level commands
         if(!(sender instanceof Player)) {
             sender.sendMessage(ChatColor.translateAlternateColorCodes('&',prefix + "Must be a player to execute!"));
             return true;
         }
         Player player = (Player) sender;
 
+        // Checks for player permission
         if(!player.hasPermission("tv.vote")) {
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "Invalid permissions!"));
             return true;
         }
+
+        // If player only issues /tv (to vote, no arguments)
         if(args.length == 0) {
             if(!voteStatus) {
                 player.sendMessage(ChatColor.translateAlternateColorCodes('&',prefix + "No current votes found! Start one with /tv <tick>!"));
@@ -83,6 +88,11 @@ public class TickVote implements CommandExecutor {
             }
         }
         if(args.length == 1) {
+            /**
+             * Command in progress for help command
+            if(args[0].equalsIgnoreCase(("help"))) {
+                player.sendMessage()
+            }**/
             if(args[0].equalsIgnoreCase("reload")) {
                 if(!player.hasPermission("tv.reload")) {
                     player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "You do not have the reload permissions!"));
@@ -94,7 +104,7 @@ public class TickVote implements CommandExecutor {
             }
             if(!voteStatus) {
                 if(!isInt(args[0])) {
-                    player.sendMessage("blah");
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "Argument is not an integer!"));
                     return true;
                 }
                 setVoteStatus();
@@ -113,9 +123,11 @@ public class TickVote implements CommandExecutor {
                     pList.clear();
                     setVoteStatus();
                 }
+                Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', prefix
+                        + "Vote has started for the tick time of >" + Integer.parseInt(args[0]) + "<!"));
                 return true;
             }
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',prefix + "There is an ongoing vote already, please wait until the vote is over!"));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "There is an ongoing vote already, please wait until the vote is over!"));
             return true;
         }
         else {
@@ -133,7 +145,7 @@ public class TickVote implements CommandExecutor {
     }
 
     private void setVoteStatus() {
-        voteStatus = !voteStatus;
+        this.voteStatus = !this.voteStatus;
     }
 
     private int getpOnline() {
