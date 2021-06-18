@@ -31,6 +31,10 @@ public class Main extends JavaPlugin implements Listener {
         }
         this.getCommand("tv").setExecutor(new TickVote());
         this.saveDefaultConfig();
+
+        // Enabling bStats metrics
+        int pluginId = 11729;
+        Metrics metrics = new Metrics(this, pluginId);
     }
 
     @Override

@@ -2,8 +2,6 @@
   <library name="java">
     <CLASSES />
     <JAVADOC />
-    <SOURCES>
-      <root url="jar://$USER_HOME$/Downloads/VaultAPI-master.zip!/VaultAPI-master/src/main/java" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>

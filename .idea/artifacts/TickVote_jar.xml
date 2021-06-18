@@ -3,8 +3,6 @@
     <output-path>$PROJECT_DIR$/out/artifacts/TickVote_jar</output-path>
     <root id="archive" name="TickVote.jar">
       <element id="module-output" name="TickVote" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../API's/spigot-api-1.15.2-R0.1-20200620.025358-119.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../API's/Vault.jar" path-in-jar="/" />
       <element id="library" level="project" name="java" />
       <element id="file-copy" path="$PROJECT_DIR$/src/config.yml" />
     </root>
