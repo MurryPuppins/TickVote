@@ -46,14 +46,14 @@ public class TickVote implements CommandExecutor {
 
         // Checks for player permission
         if(!player.hasPermission("tv.vote")) {
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "Invalid permissions!"));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + plugin.getCustomConfig().getString("invalid-permissions")));
             return true;
         }
 
         // If player only issues /tv (to vote, no arguments)
         if(args.length == 0) {
             if(!voteStatus) {
-                player.sendMessage(ChatColor.translateAlternateColorCodes('&',prefix + "No current votes found! Start one with /tv <tick>!"));
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&',prefix + plugin.getCustomConfig().getString("invalid-vote")));
                 return true;
             }
             else {
@@ -61,21 +61,21 @@ public class TickVote implements CommandExecutor {
                     if(!pList.contains(player)) {
                         voteCount++;
                         pList.add(player);
-                        player.sendMessage(ChatColor.translateAlternateColorCodes('&',prefix + "Vote casted!"));
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&',prefix + plugin.getCustomConfig().getString("vote-casted")));
                         if(((double)voteCount/getpOnline()) >= (percentage * .01)) {
                             double cost = plugin.getConfig().getDouble("cost");
                             for (Player value : pList) {
                                 economy.withdrawPlayer(value, cost);
                             }
                             world.setTime(tickVote);
-                            Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&',prefix + "Vote has passed, the time has been adjusted!"));
+                            Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&',prefix + plugin.getCustomConfig().getString("proposed-tick-passed")));
                             pList.clear();
                             setVoteStatus();
                         }
                         return true;
                     }
                     else {
-                        player.sendMessage(ChatColor.translateAlternateColorCodes('&',prefix + "You have already casted your vote!"));
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&',prefix + plugin.getCustomConfig().getString("vote-already-casted")));
                         return true;
                     }
                 }
@@ -90,12 +90,12 @@ public class TickVote implements CommandExecutor {
         if(args.length == 1) {
             /**
              * Command in progress for help command
-            if(args[0].equalsIgnoreCase(("help"))) {
-                player.sendMessage()
-            }**/
+             if(args[0].equalsIgnoreCase(("help"))) {
+             player.sendMessage()
+             }**/
             if(args[0].equalsIgnoreCase("reload")) {
                 if(!player.hasPermission("tv.reload")) {
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "You do not have the reload permissions!"));
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + plugin.getCustomConfig().getString("invalid-permissions")));
                     return true;
                 }
                 reloadConfig();
@@ -104,7 +104,7 @@ public class TickVote implements CommandExecutor {
             }
             if(!voteStatus) {
                 if(!isInt(args[0])) {
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "Argument is not an integer!"));
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + plugin.getCustomConfig().getString("invalid-tick-time")));
                     return true;
                 }
                 setVoteStatus();
@@ -119,19 +119,20 @@ public class TickVote implements CommandExecutor {
                         economy.withdrawPlayer(value, cost);
                     }
                     world.setTime(tickVote);
-                    Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', prefix + "Vote has passed, the time has been adjusted!"));
+                    Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', prefix + plugin.getCustomConfig().getString("proposed-tick-passed")));
                     pList.clear();
                     setVoteStatus();
+                    return true;
                 }
                 Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', prefix
-                        + "Vote has started for the tick time of >" + Integer.parseInt(args[0]) + "<!"));
+                        + "Vote has started for the tick time of (" + Integer.parseInt(args[0]) + ")!"));
                 return true;
             }
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "There is an ongoing vote already, please wait until the vote is over!"));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + plugin.getCustomConfig().getString("ongoing-proposed-vote")));
             return true;
         }
         else {
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "Invalid input!"));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + plugin.getCustomConfig().getString("invalid-input")));
             return true;
         }
     }
@@ -142,6 +143,7 @@ public class TickVote implements CommandExecutor {
         prefix = plugin.getConfig().getString("prefix");
         end = plugin.getConfig().getInt("timer");
         percentage = plugin.getConfig().getDouble("percentage");
+        plugin.reloadCustomConfig();
     }
 
     private void setVoteStatus() {

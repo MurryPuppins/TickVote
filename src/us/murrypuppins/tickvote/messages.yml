@@ -1,0 +1,26 @@
+# Messages file for TickVote
+# You can modify all of the messages that are sent by this plugin
+
+# If player lacks TickVote permissions (for voting and admin)
+invalid-permissions: "Invalid permissions!"
+
+# If player attempts to vote, but no proposed vote is currently running
+invalid-vote: "No current votes found! Start one with /tv <tick>!"
+
+# Player's vote was casted successfully
+vote-casted: "Vote casted!"
+
+# If the proposed vote has received enough votes to pass
+proposed-tick-passed: "Vote has passed, the time has been adjusted!"
+
+# If player has already casted their vote
+vote-already-casted: "You have already casted your vote!"
+
+# If player attempts to start a tick vote, but one is already running
+ongoing-proposed-vote: "There is an ongoing vote already, please wait until the vote is over!"
+
+# If player attempts to start a tick-vote without a valid integer
+invalid-tick-time: "Argument is not an integer!"
+
+# If invalid input is detected
+invalid-input: "Invalid input!"

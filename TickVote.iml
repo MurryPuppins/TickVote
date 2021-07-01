@@ -5,23 +5,23 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="16" jdkType="JavaSDK" />
+    <orderEntry type="jdk" jdkName="11" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Documents/Buildtools/spigot-1.17.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/API's/spigot-1.17.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$USER_HOME$/Documents/Buildtools/spigot-1.17.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/API's/spigot-1.17.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Documents/Vault.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/API's/Vault.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
